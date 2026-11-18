@@ -143,6 +143,19 @@ body{background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/
 .gs{position:absolute;inset:0;z-index:2;pointer-events:none}.gs i{position:absolute;top:-8px;border-radius:50%;background:#fff;opacity:0;box-shadow:0 0 5px #fff;animation:gf 4s ease-in-out forwards}
 @keyframes gf{0%{opacity:0;transform:translate(0,0)}10%{opacity:1}100%{opacity:.9;transform:translate(var(--dx),270px)}}
 .base{position:relative;z-index:1;width:190px;height:60px;margin:-16px auto 0;border:1px solid var(--oro);border-radius:10px 10px 28px 28px;background:linear-gradient(#9a2640,#5a1424);box-shadow:0 12px 20px rgba(0,0,0,.4);display:grid;place-items:center;color:#f3d88e;font:400 28px 'Great Vibes',cursive}
+/* mensaje de navidad */
+.mb{position:relative;background:#fffaf0;border:1px solid rgba(201,162,74,.6);border-radius:16px;padding:14px 18px 16px;margin:16px 0;box-shadow:0 10px 22px rgba(109,26,43,.14);text-align:left;opacity:0}
+.mb:after{content:"";position:absolute;inset:5px;border:1px dashed rgba(201,162,74,.5);border-radius:12px;pointer-events:none}
+.mb p{margin:.3em 0 0;font-size:20px;font-style:italic;line-height:1.4}
+.mb.gold{background:#fff3d6;border-color:var(--oro)}
+.mb.mbf{text-align:center;background:linear-gradient(160deg,#8f2236,var(--vino));color:var(--crema)}
+.mb.mbf p{font:400 clamp(34px,9vw,42px)/1.15 'Great Vibes',cursive;font-style:normal;color:#f3d88e;margin:.1em 0}
+.active .mb{animation:rise .9s both;animation-delay:var(--d,0s)}
+/* pantalla de espera (temporizador) */
+#sLock .count div{background:rgba(0,0,0,.28);padding:12px 6px}
+#sLock .count b{font-size:30px}
+#sLock .count span{font-size:11px}
+#sLock .count{gap:8px}
 </style>
 </head>
 <body>
@@ -288,7 +301,7 @@ body{background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/
    <p style="text-align:right">Con mucho cariño,<br>tu esposo</p>
    <div class="end">Te amo, te amé y te amaré</div>
   </div>
-  <button class="btn" id="nextLetter" style="display:none" onclick="go(7)">Nuestra canción</button>
+  <button class="btn" id="nextLetter" style="display:none" onclick="go(11)">Mi mensaje de Navidad</button>
  </div>
 </section>
 
@@ -363,10 +376,62 @@ body{background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/
  </div>
 </section>
 
+<!-- ===== PANTALLA EXTRA · MENSAJE DE NAVIDAD (índice 11) ===== -->
+<section class="screen" id="sMsg">
+ <svg class="i deco" style="left:4%;top:3%;font-size:36px;color:var(--rosa)"><use href="#heart"/></svg>
+ <svg class="i deco" style="right:5%;top:3%;font-size:38px"><use href="#bear"/></svg>
+ <div class="wrap">
+  <h2>Mi mensaje para ti</h2>
+  <div class="orn"><svg class="i"><use href="#heart"/></svg></div>
+  <div class="mb" style="--d:.3s"><span class="small">Nuestra primera Navidad</span>
+   <p>Esposa preciosa, hoy es un día muy especial para mí, porque es nuestra primera Navidad juntos.</p></div>
+  <div class="mb" style="--d:1.1s"><span class="small">La distancia</span>
+   <p>Aunque quisiera estar contigo, no podemos, y la distancia me entristece un poco. Pero saber que esta será la primera Navidad de muchas me hace sentir muy feliz.</p></div>
+  <div class="mb" style="--d:1.9s"><span class="small">Mi regalo</span>
+   <p>No es un regalo costoso ni un regalo físico, pero está hecho con todo mi amor y mi cariño.</p></div>
+  <div class="mb gold" style="--d:2.7s"><span class="small">Lo que eres para mí</span>
+   <p>Porque tú eres la persona más especial para mí. Eres todo mi mundo, mi vida entera, mi motivación, mi presente y mi futuro.</p></div>
+  <div class="mb" style="--d:3.5s"><span class="small">Mis deseos para ti</span>
+   <p>Espero que la pases súper bien con tu familia y que te regalen muchas cosas, mi niña linda.</p></div>
+  <div class="mb mbf" style="--d:4.3s"><p>Feliz Navidad, princesita 🫶🏻</p></div>
+  <button class="btn" onclick="go(7)">Nuestra canción</button>
+ </div>
+</section>
+
+<!-- ===== PANTALLA EXTRA · TEMPORIZADOR HASTA NAVIDAD (índice 12) ===== -->
+<section class="screen dark" id="sLock">
+ <div class="lights"></div>
+ <svg class="i deco" style="left:6%;top:16%;font-size:46px"><use href="#tree"/></svg>
+ <svg class="i deco" style="right:6%;top:18%;font-size:38px;color:var(--oro)"><use href="#bell"/></svg>
+ <svg class="i deco" style="left:7%;bottom:8%;font-size:44px"><use href="#bear"/></svg>
+ <svg class="i deco" style="right:7%;bottom:8%;font-size:44px;animation-delay:-2s"><use href="#cat"/></svg>
+ <div class="wrap">
+  <p class="small">Una sorpresa navideña</p>
+  <svg class="gift" style="width:150px" viewBox="0 0 64 64"><use href="#gb"/><g class="lid"><use href="#gl"/></g></svg>
+  <h2 id="lkT">Todavía no es Navidad, princesa</h2>
+  <p id="lkP">Tu regalo se abre el 25 de diciembre.<br>Vuelve cuando el reloj llegue a cero ♡</p>
+  <div class="count" id="lkC">
+   <div><b id="lkD">0</b><span>días</span></div>
+   <div><b id="lkH">0</b><span>horas</span></div>
+   <div><b id="lkM">0</b><span>min</span></div>
+   <div><b id="lkS">0</b><span>seg</span></div>
+  </div>
+  <button class="btn" id="lkB" style="display:none" onclick="go(0)">Abrir mi regalo</button>
+ </div>
+</section>
+
 <script>
+/* ===== MODO DE PRUEBA / TEMPORIZADOR =====
+   Tiempo = 0 → SIN temporizador: puedes ver todo el regalo cuando quieras (para probarlo).
+   Tiempo = 1 → CON temporizador: bloqueado hasta el 25 de diciembre de 2026 a las 00:00. */
+const Tiempo = 0;
+const NAVIDAD = new Date(2026,11,25,0,0,0);
+const LOCK = 12; /* índice de la pantalla del temporizador */
+function locked(){return Tiempo===1 && Date.now()<NAVIDAD.getTime();}
 /* ===== NAVEGACIÓN ENTRE PANTALLAS ===== */
 const screens=[...document.querySelectorAll('.screen')];let cur=0,heartsTimer=null;
 function go(n){
+  if(locked())n=LOCK;
   screens[cur].classList.remove('active');cur=n;
   const s=screens[n];s.classList.add('active');s.scrollTop=0;
   clearInterval(heartsTimer);
@@ -448,6 +513,32 @@ function playSong(){
   document.getElementById('yt').innerHTML='<iframe src="https://www.youtube.com/embed/yqVSh5aX234?autoplay=1&playsinline=1&rel=0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen title="Siempre Siempre - Eslabón Armado"></iframe>';
   document.getElementById('waves').classList.add('on');document.getElementById('disc').classList.add('on');
   document.getElementById('play').style.display='none';
+}
+/* ===== TEMPORIZADOR HASTA NAVIDAD ===== */
+let lockTimer=null;
+function tickLock(){
+  const ms=NAVIDAD.getTime()-Date.now();
+  if(ms<=0){
+    clearInterval(lockTimer);
+    document.getElementById('lkT').textContent='¡Ya es Navidad, mi princesa!';
+    document.getElementById('lkP').innerHTML='Tu regalo ya está listo ♡';
+    document.getElementById('lkC').style.display='none';
+    document.getElementById('lkB').style.display='inline-block';
+    return;
+  }
+  const s=Math.floor(ms/1000),p=n=>String(n).padStart(2,'0');
+  document.getElementById('lkD').textContent=Math.floor(s/86400);
+  document.getElementById('lkH').textContent=p(Math.floor(s%86400/3600));
+  document.getElementById('lkM').textContent=p(Math.floor(s%3600/60));
+  document.getElementById('lkS').textContent=p(s%60);
+}
+if(Tiempo===1){
+  tickLock();
+  if(locked()){
+    screens[0].classList.remove('active');
+    screens[LOCK].classList.add('active');cur=LOCK;
+    lockTimer=setInterval(tickLock,1000);
+  }
 }
 </script>
 </body>
