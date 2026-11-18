@@ -424,7 +424,7 @@ body{background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/
 /* ===== MODO DE PRUEBA / TEMPORIZADOR =====
    Tiempo = 0 → SIN temporizador: puedes ver todo el regalo cuando quieras (para probarlo).
    Tiempo = 1 → CON temporizador: bloqueado hasta el 25 de diciembre de 2026 a las 00:00. */
-const Tiempo = 0;
+const Tiempo = 1;
 const NAVIDAD = new Date(2026,11,25,0,0,0);
 const LOCK = 12; /* índice de la pantalla del temporizador */
 function locked(){return Tiempo===1 && Date.now()<NAVIDAD.getTime();}
